@@ -10,5 +10,14 @@
   },
   "devDependencies": {
     "dotenv": "^10.0.0"
-  }
+  },
+  "name": "osiz-poc-backend",
+  "description": "",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "author": "",
+  "license": "ISC"
 }

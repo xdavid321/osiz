@@ -1,12 +1,10 @@
 const { Router } = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-const bodyparser = require("body-parser");
 const { validate } = require("express-validation");
 
 const { joiOptions, validatorOptions } = require("./validators");
 const { createOrderValidator } = require("./validators/order.validator");
 const { generateOrder } = require("../payment/index");
+const Order = require("../database/models/order.model");
 
 const router = Router();
 
@@ -18,10 +16,21 @@ router.post("/", validate(createOrderValidator, validatorOptions, joiOptions), a
     
     const {body} = req;
 
-    generateOrder(body.amount, "INR")
-        .then((order) => {
-            res.status(200).json(order);
-        });
+    const order = await generateOrder(body.amount, "INR");
+
+    await Order.create({
+        _id: order.id,
+        username: body.username,
+        stockId: body.stockId,
+        amount: body.amount,
+        createdAt: order.created_at,
+        scriptType: body.scriptType,
+        orderType: body.orderType,
+        market: body.market,
+        status: order.status
+    });
+
+    res.status(200).json(order);
 
 });
 

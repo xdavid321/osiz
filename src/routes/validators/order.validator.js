@@ -1,13 +1,14 @@
 const { Joi, schema } = require("express-validation");
 
-const { orderTypes, markets } = require("../../enum");
+const { orderTypes, markets, scripType } = require("../../enum");
 
 exports.createOrderValidator = {
     body: Joi.object({
-        userId: Joi.string().required(),
+        username: Joi.string().required(),
         amount: Joi.number().required(),
         stockId: Joi.string().required(),
-        type: Joi.string().valid(...Object.values(orderTypes)).required(),
+        orderType: Joi.string().valid(...Object.values(orderTypes)).required(),
+        scripType: Joi.string().valid(...Object.values(scripType)).required(),
         market: Joi.string().valid(...Object.values(markets)).required()
     }),
 };

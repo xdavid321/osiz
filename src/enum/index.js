@@ -7,3 +7,8 @@ exports.markets = {
     NSE: "NSE",
     BSE: "BSE" 
 }
+
+exports.scripType = {
+    SELL: "SELL",
+    BUY: "BUY"
+}
