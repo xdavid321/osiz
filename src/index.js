@@ -7,7 +7,7 @@ if(process.env.NODE_ENV == "development") {
     require("dotenv").config({path: path.join(__dirname, "./.env")});
 }
 
-const apiRouter = require("./routes").default;
+const apiRouter = require("./routes");
 
 // Instantiate an express app
 const app = express();

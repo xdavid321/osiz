@@ -3,6 +3,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 const bodyparser = require("body-parser");
 
+const orderRouter = require("./order.route");
+
 const router = Router();
 
 // Attaching middlewares
@@ -10,4 +12,7 @@ router.use(cors());
 router.use(bodyparser.json());
 router.use(helmet());
 
-exports.default = router;
+// Functional routers
+router.use("/order", orderRouter);
+
+module.exports = router;
